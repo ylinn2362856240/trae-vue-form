@@ -1,0 +1,126 @@
+/**
+ * 全局设计系统
+ * 使用 CSS 变量（Design Tokens）统一管理颜色、阴影、间距
+ * NOTE: 深色模式通过 prefers-color-scheme 自动切换，无需 JS 干预
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── 亮色主题 ── */
+:root {
+  /* 主色调：深靛蓝，专业感强 */
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-light: #ede9fe;
+  --color-primary-shadow: rgba(79, 70, 229, 0.25);
+  --color-accent: #7c3aed;
+
+  /* 危险色 */
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+
+  /* 语义文字色 */
+  --color-text: #111827;
+  --color-text-secondary: #374151;
+  --color-text-muted: #9ca3af;
+
+  /* 背景色 */
+  --color-bg: #f5f7fa;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f9fafb;
+
+  /* 输入框 */
+  --color-input-bg: #ffffff;
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+
+  /* 表格 */
+  --color-table-head: #f9fafb;
+  --color-row-hover: #f5f3ff;
+
+  /* 代码块 */
+  --color-code-bg: #1e1e2e;
+  --color-code-text: #cdd6f4;
+
+  /* 阴影 */
+  --shadow-panel: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* ── 深色主题（自动响应系统设置）── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #818cf8;
+    --color-primary-hover: #6366f1;
+    --color-primary-light: rgba(129, 140, 248, 0.15);
+    --color-primary-shadow: rgba(129, 140, 248, 0.3);
+    --color-accent: #a78bfa;
+
+    --color-danger: #f87171;
+    --color-danger-light: rgba(248, 113, 113, 0.15);
+
+    --color-text: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #64748b;
+
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-surface-raised: #162032;
+
+    --color-input-bg: #0f172a;
+    --color-border: #334155;
+    --color-border-light: #1e293b;
+
+    --color-table-head: #162032;
+    --color-row-hover: rgba(129, 140, 248, 0.06);
+
+    --color-code-bg: #0d1117;
+    --color-code-text: #e6edf3;
+
+    --shadow-panel: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  /* 页面进入动画 */
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 统一滚动条样式（WebKit） */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
